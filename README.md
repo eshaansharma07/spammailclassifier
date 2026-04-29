@@ -28,7 +28,8 @@ spam-classifier/
 │   ├── index.html
 │   ├── package.json
 │   ├── postcss.config.js
-│   └── tailwind.config.js
+│   ├── tailwind.config.js
+│   └── vite.config.js
 ├── .gitignore
 ├── package.json
 ├── README.md
