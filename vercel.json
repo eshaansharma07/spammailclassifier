@@ -1,19 +1,33 @@
 {
-  "installCommand": "npm --prefix frontend install",
-  "buildCommand": "npm --prefix frontend run build",
-  "outputDirectory": "frontend/dist",
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/predict",
-      "destination": "/api/index"
+      "src": "api/index.py",
+      "use": "@vercel/python"
     },
     {
-      "source": "/health",
-      "destination": "/api/index"
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/predict",
+      "dest": "/api/index.py"
     },
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "src": "/health",
+      "dest": "/api/index.py"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1"
     }
   ]
 }
